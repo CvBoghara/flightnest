@@ -133,7 +133,7 @@ if(isset($_GET['error'])) {
     <div class="col-md-10 register-right">
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <h3 class="register-heading text-secondary">PASSENGER REGISTRATION</h3>
+                <h3 class="register-heading text-secondary">Flyer Registration</h3>
                 <div class="register-form">
                 <form method="POST" action="includes/register.inc.php">
                     <div class="conrainer-fluid">

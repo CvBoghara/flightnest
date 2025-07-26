@@ -33,38 +33,26 @@ if(isset($_POST['pass_but']) && isset($_SESSION['userId'])) {
             break;
         }      
     }        
-    $stmt = mysqli_stmt_init($conn);
-    $sql = 'SELECT * FROM Passenger_profile';
+   $stmt = mysqli_stmt_init($conn);
+    $sql = 'SELECT passenger_id FROM Passenger_profile';
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$sql)) {
         header('Location: ../pass_form.php?error=sqlerror');
-        exit();            
+        exit();
     } else {
-        mysqli_stmt_bind_param($stmt,'ii',$flight_id,$_SESSION['userId']);            
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-        $flag = false;
-        while ($row = mysqli_fetch_assoc($result)) {
-            $pass_id=$row['passenger_id'];
-        }
-    } 
-    if(is_null($pass_id)) {
         $pass_id = 0;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = 'ALTER TABLE Passenger_profile AUTO_INCREMENT = 1 ';
-        $stmt = mysqli_stmt_init($conn);
-        if(!mysqli_stmt_prepare($stmt,$sql)) {
-            header('Location: ../pass_form.php?error=sqlerror');
-            exit();            
-        } else {         
-            mysqli_stmt_execute($stmt);
-        }        
+        while ($row = mysqli_fetch_assoc($result)) {
+            $pass_id = $row['passenger_id'];
+        }
     }
+    $pass_id++;
     $stmt = mysqli_stmt_init($conn);
     $flag = false;
     for($i=0;$i<$date_len;$i++) {
         $sql = 'INSERT INTO Passenger_profile (user_id,mobile,dob,f_name,
-        m_name,l_name,flight_id) VALUES (?,?,?,?,?,?,?)';            
+        m_name,l_name,flight_id) VALUES (?,?,?,?,?,?,?);';            
         if(!mysqli_stmt_prepare($stmt,$sql)) {
             header('Location: ../pass_form.php?error=sqlerror');
             exit();            
@@ -83,7 +71,7 @@ if(isset($_POST['pass_but']) && isset($_SESSION['userId'])) {
         $_SESSION['price'] = $_POST['price'];
         $_SESSION['type'] = $_POST['type'];
         $_SESSION['ret_date'] = $_POST['ret_date'];
-        $_SESSION['pass_id'] = $pass_id+1;
+        $_SESSION['pass_id'] = $pass_id;
         header('Location: ../payment.php');
         exit();          
     }

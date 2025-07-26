@@ -171,6 +171,13 @@
                   name="price" id="price" required />
               </div>            
           </div>
+           <div class="col">
+            <div class="input-group">
+                <label for="flight_code">Flight Code</label>
+                <input type="text" style="border: 0px; border-bottom: 2px solid #5c5c5c;" 
+                  name="flight_code" id="flight_code" required />
+              </div>            
+          </div>
           <?php
           $sql = 'SELECT * FROM Airline ';
           $stmt = mysqli_stmt_init($conn);

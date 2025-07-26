@@ -24,7 +24,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
         mysqli_stmt_execute($stmt);       
         $stmt = mysqli_stmt_init($conn);
         $flag = false;
-        for($i=$pass_id;$i<=$passengers+$pass_id;$i++) {
+        for($i=$pass_id;$i<$passengers+$pass_id;$i++) {
             $sql = 'SELECT * FROM Flight WHERE flight_id=?';
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt,$sql)) {

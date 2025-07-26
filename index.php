@@ -618,7 +618,7 @@ h1 {
 		<h1 class="text-light brand mt-2">
 			<img src="assets/images/airtic.png" 
 				height="105px" width="105px" alt="">				
-		Online Flight Booking</h1>
+		FlightNest</h1>
 		<div class="sap_tabs">			
 			<div id="horizontalTab">
 				<ul class="resp-tabs-list">

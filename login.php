@@ -156,7 +156,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
   <div class="row">
     <div class="col-md-3"></div>
       <div class="bg-light form-out col-md-6">
-      <h1 class="text-secondary text-center">LOG IN PANEL</h1>
+      <h1 class="text-secondary text-center">Flyer Login</h1>
       
       <form method="POST" class=" text-center" 
         action="includes/login.inc.php">

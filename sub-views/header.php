@@ -107,7 +107,7 @@ h5 {
                     Login                            
                 </button>
                 <div class="dropdown-menu w-75" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item " href="login.php">Passenger</a>
+                    <a class="dropdown-item " href="login.php">Flyer</a>
                     <a class="dropdown-item " href="admin/login.php">Administrator</a>
                 </div>
                 </div>';

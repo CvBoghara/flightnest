@@ -55,14 +55,14 @@ body {
 <?php
     if(isset($_GET['error'])) {
         if($_GET['error'] === 'invdate') {
-          echo '<script>alert("Invalid date of birth")</script>';
+            echo '<script>alert("Invalid date of birth")</script>';
       } else if($_GET['error'] === 'moblen') {
-          echo '<script>alert("Invalid contact info")</script>';
+            echo '<script>alert("Invalid contact info")</script>';
       } else if($_GET['error'] === 'sqlerror') {
           echo"<script>alert('Database error')</script>";
-      }
     }
-    ?>
+}
+?>
 <?php if(isset($_SESSION['userId']) && isset($_POST['book_but'])) {   
     $flight_id = $_POST['flight_id'];
     $passengers = $_POST['passengers']; 
