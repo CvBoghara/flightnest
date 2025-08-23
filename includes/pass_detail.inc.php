@@ -17,21 +17,13 @@ if(isset($_POST['pass_but']) && isset($_SESSION['userId'])) {
         exit();         
     }
     $date_len = count($_POST['date']);
-    for($i=0;$i<$date_len;$i++) {        
-        $date_mnth = (int)substr($_POST['date'][$i],5,2);
-        $flag = false;
-        if($date_mnth > (int)date('m')){
-          $flag = true;
-        } else if($date_mnth == (int)date('m')){
-          if((int)substr($_POST['date'][$i],8,2) >= (int)date('d')) {
-            $flag = true;            
-          } 
-        }  
-        if($flag) {
+    for($i=0;$i<$date_len;$i++) {
+        $dob = new DateTime($_POST['date'][$i]);
+        $today = new DateTime('today');
+        if ($dob >= $today) {
             header('Location: ../pass_form.php?error=invdate');
-            exit();    
-            break;
-        }      
+            exit();
+        }
     }        
    $stmt = mysqli_stmt_init($conn);
     $sql = 'SELECT passenger_id FROM Passenger_profile';

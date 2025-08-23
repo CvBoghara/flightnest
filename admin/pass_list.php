@@ -31,11 +31,12 @@ td {
         <?php if(isset($_SESSION['adminId'])) { ?>
           <div class="container-md mt-2">
             <h1 class="display-4 text-center text-secondary"
-              >Passenger List</h1>
+              >Flyer List</h1>
             <table class="table table-bordered">
               <thead class="thead-dark">
                 <tr>
-                  <th>#</th><!-- log on to codeastro.com for more projects -->
+                  <th>No</th><!-- log on to codeastro.com for more projects -->
+                  <th scope="col">Flight</th>
                   <th scope="col">First Name</th>
                   <th scope="col">Middle Name</th>
                   <th scope="col">Last Name</th>
@@ -50,6 +51,19 @@ td {
                 <?php
                 $cnt=1;
                 $flight_id = $_GET['flight_id'];
+                $sql_f = 'SELECT flight_code FROM flight WHERE flight_id=?';
+                $stmt_f = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt_f, $sql_f)) {
+                    header('Location: ticket.php?error=sqlerror');
+                    exit();
+                }
+                mysqli_stmt_bind_param($stmt_f, 'i', $flight_id);
+                mysqli_stmt_execute($stmt_f);
+                $result_f = mysqli_stmt_get_result($stmt_f);
+                if ($row_f = mysqli_fetch_assoc($result_f)) {
+                    $flight_code = $row_f['flight_code'];
+                }
+
                 $stmt_t = mysqli_stmt_init($conn);
                 $sql_t = 'SELECT * FROM Ticket WHERE flight_id=?';
                 $stmt_t = mysqli_stmt_init($conn);
@@ -82,16 +96,17 @@ td {
                             mysqli_stmt_execute($stmt_u);
                             $result_u = mysqli_stmt_get_result($stmt_u);                
                             if ($row_u = mysqli_fetch_assoc($result_u)) {
-                              echo "                  
+                              echo "                                    
                               <tr class='text-center'>
                                 <td>".$cnt."</td>
+                                <td>".$flight_code."</td>
                                 <td>".$row['f_name']."</td>
                                 <td>".$row['m_name']."</td>
                                 <td>".$row['l_name']."</td>
                                 <td>".$row['mobile']."</td>
-                                <td>".$row['dob']."</td>
+                                <td>".date('Y-m-d', strtotime($row['dob']))."</td>
                                 <td scope='row'>".$row_u['username']."</td>
-                                <td>$ ".$row_p['amount']."</td>
+                                <td>₹ ".$row_p['amount']."</td>
                               </tr>
                               "; 
                             }                       

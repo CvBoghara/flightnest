@@ -167,15 +167,19 @@ h1 {
                             </div>
                             <hr>
                             <div class="row mb-3">  
-                                <div class="col-4">
+                                <div class="col-3">
                                     <p class="head">Airline</p>
                                     <p class="txt">'.$row_f['airline'].'</p>
-                                </div>            
-                                <div class="col-4">
+                                </div>        
+                                <div class="col-3">
+                                    <p class="head">Flight</p>
+                                    <p class="txt">'.$row_f['flight_code'].'</p> 
+                                </div>
+                                <div class="col-3">
                                     <p class="head">from</p>
                                     <p class="txt">'.$row_f['source'].'</p>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <p class="head">to</p>
                                     <p class="txt">'.$row_f['Destination'].'</p>                
                                 </div>
@@ -276,4 +280,4 @@ h1 {
     </div>
   </main><!-- log on to codeastro.com for more projects -->
   <?php } ?>
-  <?php subview('footer.php'); ?> 
+  <?php subview('footer.php'); ?>

@@ -668,11 +668,11 @@ h1 {
 							<div class="date">
 								<div class="depart">
 									<h3 style="color: rgba(255, 255, 255, 0.767);">Depart</h3>
-									<input class="form-control" name="dep_date" type="date"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+									<input class="form-control" name="dep_date" type="date" value="<?php echo date('Y-m-d'); ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
 								</div>
 								<div class="return">
 									<h3 style="color: rgba(255, 255, 255, 0.767);">Return</h3>
-									<input class="form-control"  name="ret_date" type="date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+									<input class="form-control"  name="ret_date" type="date" value="<?php echo date('Y-m-d'); ?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
 								</div>
 								<div class="clear"></div>
 							</div>
@@ -688,7 +688,7 @@ h1 {
 							<div class="clear"></div>
 							<div class="numofppl">
 								<div class="adults">
-									<h3 style="color: rgba(255, 255, 255, 0.767);">Passenger</h3>
+									<h3 style="color: rgba(255, 255, 255, 0.767);">Flyer</h3>
 									<div class="quantity"> 
 										<div class="quantity-select">                           
 											<div class="entry value-minus">&nbsp;</div>
@@ -746,7 +746,7 @@ h1 {
 							<div class="date">
 								<div class="depart">
 									<h3 style="color: rgba(255, 255, 255, 0.767);">Depart</h3>
-									<input name="dep_date" type="date" 
+									<input name="dep_date" type="date" value="<?php echo date('Y-m-d'); ?>"
 										class="form-control"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
 								</div>
 							</div>
@@ -762,7 +762,7 @@ h1 {
 							<div class="clear"></div>
 							<div class="numofppl">
 								<div class="adults">
-									<h3 style="color: rgba(255, 255, 255, 0.767);">Passenger</h3>
+									<h3 style="color: rgba(255, 255, 255, 0.767);">Flyer</h3>
 									<div class="quantity"> 
 										<div class="quantity-select">                           
 											<div class="entry value-minus">&nbsp;</div>
@@ -883,7 +883,7 @@ div.card {
 				<img src="assets/images/airtic.png" 
 					height="40px" width="40px" alt="">				
 			Online Flight Booking</h5></em>
-	<div class="text-light text-center">&copy; <?php echo date('Y')?> - Developed By Sujoy Dcunha, Christina Pereira, Mark Coutinho<br><br></div>
+	<div class="text-light text-center">&copy; <?php echo date('Y')?> - Developed By FlightNest<br><br></div>
 	<!-- <p>----------</p> -->
 	
 	</footer>	
@@ -919,7 +919,7 @@ div.card {
 						<!--load more-->
 		<script>
 	$(document).ready(function () {
-		size_li = $("#myList li").size();
+		size_li = $("#myList li").length;
 		x=1;
 		$('#myList li:lt('+x+')').show();
 		$('#loadMore').click(function () {

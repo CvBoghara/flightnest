@@ -51,7 +51,7 @@ button.btn-outline-light:hover {
               if(isset($_SESSION['adminId'])) { ?>
                 <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item">
+                  <li class="nav-item">
                     <a class="nav-link" href="index.php">
                       <h5 class="ml-2"> Dashboard</h5>
                     </a>
@@ -69,14 +69,24 @@ button.btn-outline-light:hover {
                   </li>   
                   <li class="nav-item">
                     <a class="nav-link" href="list_airlines.php">
-                      <h5>Manage Airlines</h5>
+                        <h5>Airlines</h5>
                     </a>
-                  </li>              
-                  <!-- <li class="nav-item">
-                    <a class="nav-link" href="review.php">
-                      <h4>Reviews</h4>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="route_management.php">
+                        <h5>Route Man..</h5>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="airline_operations.php">
+                      <h5>Airline Operations</h5>
                     </a>
-                  </li>                      -->
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="manifest_viewer.php">
+                      <h5>Manifest Viewer</h5>
+                    </a>
+                  </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                   <li class="nav-item">

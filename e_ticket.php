@@ -2,6 +2,9 @@
 <?php subview('header.php'); ?>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <style>
+    .main {
+        padding: 20px;
+    }
 nav {
     display: none !important;
 }
@@ -70,7 +73,7 @@ h1 {
     font-weight: bolder;
   }
 </style>
-<main>
+<main class="main">
   <?php if(isset($_SESSION['userId'])) {   
     require 'helpers/init_conn_db.php';   ?>     
     <div class="container mb-5"> 
@@ -135,15 +138,19 @@ h1 {
                             </div>
                             <hr>
                             <div class="row mb-3">  
-                                <div class="col-4">
+                                <div class="col-3">
                                     <p class="head">Airline</p>
                                     <p class="txt">'.$row_f['airline'].'</p>
-                                </div>            
-                                <div class="col-4">
+                                </div>      
+                                <div class="col-3">
+                                    <p class="head">Flight</p>
+                                    <p class="txt">'.$row_f['flight_code'].'</p>    
+                                </div>  
+                                <div class="col-3">
                                     <p class="head">from</p>
                                     <p class="txt">'.$row_f['source'].'</p>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <p class="head">to</p>
                                     <p class="txt">'.$row_f['Destination'].'</p>                
                                 </div>

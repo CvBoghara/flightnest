@@ -11,6 +11,23 @@ body {
   background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+
+.flight-link {
+    color: white !important;
+    text-decoration: none !important;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.flight-link:hover,
+.flight-link:focus,
+.flight-link:active {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+
 @font-face {
   font-family: 'product sans';
   src: url('assets/css/Product Sans Bold.ttf');
@@ -172,6 +189,17 @@ h1 {
                                         role="alert">
                                         '.$status.'
                                     </div>
+                                    <button type="button" class="btn btn-primary btn-block mt-3">
+                                          <a href="https://www.flightradar24.com/'.$row_f['flight_code'].'" 
+                                          class="flight-link" target="_blank" rel="noopener noreferrer">Flight Tracking</a>
+                                    </button>
+                                    <br>
+                                    <form action="e_ticket.php" method="post" target="_blank">
+                                        <input type="hidden" name="ticket_id" value="'.$row_t['ticket_id'].'">
+                                        <button type="submit" name="print_but" class="btn btn-primary btn-block">
+                                            View E-Ticket
+                                        </button>
+                                    </form>
                                 </div>          
                             </div> ';                     
                         }
@@ -185,4 +213,4 @@ h1 {
 
 </main>     
 <?php } ?>
-<?php subview('footer.php'); ?> 
+<?php subview('footer.php'); ?>

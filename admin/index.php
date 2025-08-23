@@ -88,16 +88,16 @@ require '../helpers/init_conn_db.php';?>
               <div class="dashbord">
                 <div class="icon-section">
                   <i class="fa fa-users" aria-hidden="true"></i><br>
-                 Total Passengers
+                 Total Flyer
                   <p><?php include 'psngrcnt.php';?></p>
                 </div>
                
               </div>
               <div class="dashbord dashbord-green">
                 <div class="icon-section">
-                  <i class="fa fa-money" aria-hidden="true"></i><br>
+                  <i class="fa fa-inr" aria-hidden="true"></i><br>
                  Amount
-                  <p>$ <?php include 'amtcnt.php';?></p>
+                  <p>₹ <?php include 'amtcnt.php';?></p>
                 </div>
                
               </div>
@@ -121,6 +121,7 @@ require '../helpers/init_conn_db.php';?>
               
             </div>
 
+
 			<!-- log on to codeastro.com for more projects -->
           <div class="card mt-4" id="flight">
       <div class="card-body">
@@ -139,7 +140,7 @@ require '../helpers/init_conn_db.php';?>
         <table class="table-sm table table-hover">
           <thead class="thead-dark">
             <tr><!-- log on to codeastro.com for more projects -->
-              <th scope="col">#</th>
+              <th scope="col">No</th>
               <th scope="col">Arrival</th>
               <th scope="col">Departure</th>
               <th scope="col">Destination</th>
@@ -150,12 +151,9 @@ require '../helpers/init_conn_db.php';?>
           </thead>
           <tbody>     <!-- log on to codeastro.com for more projects -->         
               <?php
-                $curr_date = (string)date('y-m-d');
-                $curr_date = '20'.$curr_date;
-                $sql = "SELECT * FROM Flight WHERE DATE(departure)=?";
+                $sql = "SELECT * FROM Flight WHERE DATE(departure)=CURDATE()";
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt,$sql);
-                mysqli_stmt_bind_param($stmt,'s',$curr_date);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -220,7 +218,7 @@ require '../helpers/init_conn_db.php';?>
         <table class="table-sm table table-hover">
         <thead class="thead-dark">
             <tr><!-- log on to codeastro.com for more projects -->
-              <th scope="col">#</th>
+              <th scope="col">No</th>
               <th scope="col">Arrival</th>
               <th scope="col">Departure</th>
               <th scope="col">Destination</th>
@@ -232,12 +230,9 @@ require '../helpers/init_conn_db.php';?>
           <tbody>
               <tr>
               <?php
-                $curr_date = (string)date('y-m-d');
-                $curr_date = '20'.$curr_date;
-                $sql = "SELECT * FROM Flight WHERE DATE(departure)=?";
+                $sql = "SELECT * FROM Flight WHERE DATE(departure)=CURDATE()";
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt,$sql);
-                mysqli_stmt_bind_param($stmt,'s',$curr_date);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -293,7 +288,7 @@ require '../helpers/init_conn_db.php';?>
         <table class="table-sm table table-hover">
         <thead class="thead-dark">
             <tr><!-- log on to codeastro.com for more projects -->
-              <th scope="col">#</th>
+              <th scope="col">No</th>
               <th scope="col">Arrival</th>
               <th scope="col">Departure</th>
               <th scope="col">Destination</th>
@@ -305,12 +300,9 @@ require '../helpers/init_conn_db.php';?>
           <tbody>
               <tr>
               <?php
-                $curr_date = (string)date('y-m-d');
-                $curr_date = '20'.$curr_date;
-                $sql = "SELECT * FROM Flight WHERE DATE(departure)=?";
+                $sql = "SELECT * FROM Flight WHERE DATE(departure)=CURDATE()";
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt,$sql);
-                mysqli_stmt_bind_param($stmt,'s',$curr_date);
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt);
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -366,7 +358,7 @@ require '../helpers/init_conn_db.php';?>
         <table class="table-sm table table-hover">
         <thead class="thead-dark">
             <tr><!-- log on to codeastro.com for more projects -->
-              <th scope="col">#</th>
+              <th scope="col">No</th>
               <th scope="col">Arrival</th>
               <th scope="col">Departure</th>
               <th scope="col">Destination</th>
@@ -377,12 +369,9 @@ require '../helpers/init_conn_db.php';?>
           <tbody>
               <tr>
               <?php
-                $curr_date = (string)date('y-m-d');
-                $curr_date = '20'.$curr_date;
-                $sql = "SELECT * FROM Flight WHERE DATE(departure)=?";
+                $sql = "SELECT * FROM Flight WHERE DATE(departure)=CURDATE()";
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt,$sql);
-                mysqli_stmt_bind_param($stmt,'s',$curr_date);
                 mysqli_stmt_execute($stmt);
                   $result = mysqli_stmt_get_result($stmt);
                   while ($row = mysqli_fetch_assoc($result)) {

@@ -11,6 +11,7 @@ if(isset($_POST['flight_but']) and isset($_SESSION['adminId'])) {
     $price = $_POST['price'];
     $air_id = $_POST['airline_name'];
     $dura = $_POST['dura'];
+    $flight_code = $_POST['flight_code'];
 
     if($dep_city===$arr_city || $arr_city==='To' || $arr_city==='From') {
       header('Location: ../../admin/flight.php?error=same');
@@ -77,8 +78,8 @@ if(isset($_POST['flight_but']) and isset($_SESSION['adminId'])) {
         $seats = $row['seats'];
         $airline_name = $row['name'];
         $sql = "INSERT INTO Flight(admin_id,arrivale,departure,Destination,source,
-          airline,Seats,duration,Price,status,issue) VALUES (?,?,?,
-          ?,?,?,?,?,?,'','')";
+          airline,Seats,duration,Price,flight_code,status,issue) VALUES (?,?,?,
+          ?,?,?,?,?,?,?,'','')";
           
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -86,8 +87,8 @@ if(isset($_POST['flight_but']) and isset($_SESSION['adminId'])) {
           exit();          
         } else {      
           $admin_id = $_SESSION['adminId'];  
-          mysqli_stmt_bind_param($stmt,'isssssisi',$admin_id,$arrival,$departure,$arr_city
-            ,$dep_city,$airline_name,$seats,$dura,$price);            
+          mysqli_stmt_bind_param($stmt,'isssssisis',$admin_id,$arrival,$departure,$arr_city
+            ,$dep_city,$airline_name,$seats,$dura,$price,$flight_code);            
           mysqli_stmt_execute($stmt); 
         }
         mysqli_stmt_close($stmt);

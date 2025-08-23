@@ -59,7 +59,7 @@ td {
             <table class="table table-bordered">
               <thead class="table-dark">
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">No</th>
                   <th scope="col">Name</th>
                   <th scope="col">Seats</th>
                   <th scope="col">Action</th>

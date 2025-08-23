@@ -67,6 +67,7 @@ td {
                   <th scope="col">Airline</th>
                   <th scope="col">Seats</th>
                   <th scope="col">Price</th>
+                  <th scope="col">Flight</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -90,7 +91,8 @@ td {
                     <td>".$row['Destination']."</td>
                     <td>".$row['airline']."</td>
                     <td>".$row['Seats']."</td>
-                    <td>$ ".$row['Price']."</td>
+                    <td>₹ ".$row['Price']."</td>
+                    <td>".$row['flight_code']."</td>
                     <td>
                     <form action='all_flights.php' method='post'>
                       <input name='flight_id' type='hidden' value=".$row['flight_id'].">
