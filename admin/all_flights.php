@@ -1,4 +1,4 @@
-<?php include_once 'header.php'; ?><!-- log on to codeastro.com for more projects -->
+<?php include_once 'header.php'; ?>  
 <?php include_once 'footer.php';
 require '../helpers/init_conn_db.php';?>
 <?php
@@ -14,13 +14,12 @@ if(isset($_POST['del_flight']) and isset($_SESSION['adminId'])) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-    // header('Location: all_flights.php');
     echo("<script>location.href = 'all_flights.php';</script>");
     exit();
   }
 }
 ?>
-<!-- log on to codeastro.com for more projects -->
+  
 <style>
 table {
   background-color: white;
@@ -36,13 +35,10 @@ a:hover {
   text-decoration: none;
 }
 body {
-  /* background-color: #B0E2FF; */
   background-color: #efefef;
 }
 th {
   font-size: 22px;
-  /* font-weight: lighter; */
-  /* font-family: 'Courier New', Courier, monospace; */
 }
 td {
   margin-top: 10px !important;
@@ -58,7 +54,7 @@ td {
               >FLIGHT LIST</h1>
             <table class="table table-bordered">
               <thead class="table-dark">
-                <tr><!-- log on to codeastro.com for more projects -->
+                <tr>  
                   <th scope="col">ID</th>
                   <th scope="col">Arrival</th>
                   <th scope="col">Departure</th>
@@ -110,6 +106,4 @@ td {
 
           </div>
         <?php } ?>
-
     </main>
-	<!-- log on to codeastro.com for more projects -->

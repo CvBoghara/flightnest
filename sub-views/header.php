@@ -1,6 +1,6 @@
 <?php
 session_start();
-?><!-- log on to codeastro.com for more projects -->
+?>  
 <!doctype html>
 <html lang="en">
     <head>
@@ -12,7 +12,7 @@ session_start();
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/44f557ccce.js"></script>
         <!-- Bootstrap CSS -->
-		<!-- log on to codeastro.com for more projects -->
+		  
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>Online Flight Booking</title>         
         <link rel = "icon" href ="../assets/images/brand.png"  type = "image/x-icon">       
@@ -67,7 +67,7 @@ h5 {
                     <a class="nav-link" href="ticket.php">
                         <h5> Tickets</h5>
                     </a>
-                </li>    <!-- log on to codeastro.com for more projects -->                                                              
+                </li>                                                                    
             <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link" href="feedback.php">
@@ -79,7 +79,7 @@ h5 {
                         <h5> About</h5>
                     </a>
                 </li>             
-            </ul>    <!-- log on to codeastro.com for more projects -->       
+            </ul>             
             <?php
             if(isset($_SESSION['userId'])) {
                 echo '

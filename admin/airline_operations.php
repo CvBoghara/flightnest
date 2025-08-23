@@ -4,7 +4,6 @@ require '../helpers/init_conn_db.php';?>
 <main>
     <div class="container mt-5">
         <h1>Airline Operations</h1>
-
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Select Flight</h5>
@@ -20,7 +19,6 @@ require '../helpers/init_conn_db.php';?>
                 </form>
             </div>
         </div>
-
         <?php
         if(isset($_GET['edit'])) {
             $operation_id = $_GET['edit'];
@@ -35,7 +33,7 @@ require '../helpers/init_conn_db.php';?>
             ?>
             <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="card-title">Edit Operation #<?php echo $operation_id; ?> for Flight #<?php echo $flight_id; ?></h5>
+                    <h5 class="card-title">Edit Operation No <?php echo $operation_id; ?> for Flight No <?php echo $flight_id; ?></h5>
                     <form action="../includes/admin/operation.inc.php" method="post">
                         <input type="hidden" name="flight_id" value="<?php echo $flight_id; ?>">
                         <input type="hidden" name="operation_id" value="<?php echo $operation_id; ?>">
@@ -75,15 +73,15 @@ require '../helpers/init_conn_db.php';?>
         ?>
         <div class="card mt-4">
             <div class="card-body">
-                <h5 class="card-title">Add New Operation for Flight #<?php echo $flight_id; ?></h5>
+                <h5 class="card-title">Add New Operation for Flight No <?php echo $flight_id; ?></h5>
                 <form action="../includes/admin/operation.inc.php" method="post">
                     <input type="hidden" name="flight_id" value="<?php echo $flight_id; ?>">
                     <div class="form-row">
                         <div class="col">
-                            <input type="number" class="form-control" name="baggage_revenue" placeholder="Baggage Revenue" required>
+                            <input type="number" class="form-control" name="passenger_revenue" placeholder="Passenger Revenue" required>
                         </div>
                         <div class="col">
-                            <input type="number" class="form-control" name="passenger_revenue" placeholder="Passenger Revenue" required>
+                            <input type="number" class="form-control" name="baggage_revenue" placeholder="Baggage Revenue" required>
                         </div>
                         <div class="col">
                             <input type="number" class="form-control" name="flight_cost" placeholder="Flight Cost" required>
@@ -110,12 +108,12 @@ require '../helpers/init_conn_db.php';?>
 
         <div class="card mt-4">
             <div class="card-body">
-                <h5 class="card-title">Existing Operations for Flight #<?php echo $flight_id; ?></h5>
+                <h5 class="card-title">Existing Operations for Flight No <?php echo $flight_id; ?></h5>
                 <a href="generate_ops_pdf.php?flight_id=<?php echo $flight_id; ?>" class="btn btn-secondary mb-3">Download as PDF</a>
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">No</th>
                             <th scope="col">Baggage Revenue</th>
                             <th scope="col">Passenger Revenue</th>
                             <th scope="col">Flight Cost</th>

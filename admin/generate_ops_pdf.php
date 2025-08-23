@@ -38,11 +38,11 @@ if (isset($_GET['flight_id'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Airline Operations Report for Flight #<?php echo $flight_id; ?></h1>
+        <h1>Airline Operations Report for Flight No <?php echo $flight_id; ?></h1>
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>No</th>
                     <th>Baggage Revenue</th>
                     <th>Passenger Revenue</th>
                     <th>Flight Cost</th>

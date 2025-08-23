@@ -127,10 +127,10 @@
 							<div class="clear"></div>
 							<input type="submit" value="Search Flights" name="search_but">
 						</form>																				
-	</div>
-	</div>
-	</div>
-	</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 <div class="conatiner-fluid p-4" style="background-color: whitesmoke;margin-top:150px;">
 <div class="intro">

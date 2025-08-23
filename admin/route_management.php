@@ -66,7 +66,7 @@ require '../helpers/init_conn_db.php';?>
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">No</th>
                             <th scope="col">Source</th>
                             <th scope="col">Destination</th>
                             <th scope="col">Actions</th>

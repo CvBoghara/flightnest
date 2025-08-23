@@ -143,8 +143,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>     
-              <!-- Flights will be populated from the database -->
+          <tbody> 
           </tbody>
         </table>        
       
@@ -178,7 +177,7 @@
             </tr>
           </thead>
           <tbody>
-              <!-- Flights will be populated from the database -->
+            
           </tbody>
         </table>        
       

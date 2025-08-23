@@ -30,7 +30,6 @@ p.quest {
   color: #4C53D3;
   font-size: 18px;
   font-weight: bold;
-  /* text-align: center; */
 }
 
 div.review-bag {

@@ -25,9 +25,7 @@ button.btn-outline-light:hover {
   color: cornflowerblue !important;
 }
   .navbar-custom {
-    /* background-color: #6495ED; */
     background-color: #3a3a3a;
-    /* font-family: 'Bangers', cursive; */
     font-family: 'product sans', cursive;    
   }
   h4 {
@@ -127,5 +125,4 @@ button.btn-outline-light:hover {
                 </form> 
             </div>
             <?php } ?>
-
         </nav>

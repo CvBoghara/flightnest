@@ -7,7 +7,6 @@ if(!$conn){
 }
 
 $sql = "SELECT * FROM users";
-                $query = $conn->query($sql);
-
-                echo "$query->num_rows";
-?><!-- Visit codeastro.com for more projects -->
+    $query = $conn->query($sql);
+    echo "$query->num_rows";
+?>

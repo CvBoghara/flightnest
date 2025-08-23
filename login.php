@@ -63,8 +63,6 @@ if(isset($_COOKIE['Uname']) && isset($_COOKIE['Upwd'])) {
 ?>
 <style>
   body {
-    /* padding-top: 20px; */
-    /* background-image: url('assets/images/bg6.jpg'); */
     background: #bdc3c7;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -105,14 +103,6 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
   a:hover {
     text-decoration: none;
   }
-  /* .btn-outline-light {
-    color :#0275d8;
-    border-color: #0275d8 !important;
-  }
-  .btn-outline-light:hover {
-    color: white !important;
-    background-color: #0275d8 !important;
-  } */
   @font-face {
   font-family: 'product sans';
   src: url('assets/css/Product Sans Bold.ttf');
@@ -232,10 +222,6 @@ $(document).ready(function(){
       $("label[for='"+me.attr('id')+"']").removeClass("animate-label");
     }
   }) ;
-  // $('#test-form').submit(function(e){
-  //   e.preventDefault() ;
-  //   alert("Thank you") ;
-  // })
 });
 </script>
 </main>
