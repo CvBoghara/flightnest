@@ -1,7 +1,7 @@
-<?php include_once 'header.php'; ?>  
+<?php include_once 'header.php'; ?><!-- log on to codeastro.com for more projects -->
 <?php include_once 'footer.php';
 require '../helpers/init_conn_db.php';?>
-<style>  
+<style><!-- log on to codeastro.com for more projects -->
 table {
   background-color: white;
 }
@@ -17,6 +17,8 @@ body {
 }
 th {
   font-size: 22px;
+  /* font-weight: lighter; */
+  /* font-family: 'Courier New', Courier, monospace; */
 }
 td {
   margin-top: 10px !important;
@@ -33,7 +35,7 @@ td {
             <table class="table table-bordered">
               <thead class="thead-dark">
                 <tr>
-                  <th>No</th>
+                  <th>No</th><!-- log on to codeastro.com for more projects -->
                   <th scope="col">Flight</th>
                   <th scope="col">First Name</th>
                   <th scope="col">Middle Name</th>
@@ -113,8 +115,11 @@ td {
                       $cnt++; }
                       }
                 ?>
+
               </tbody>
             </table>
+
           </div>
         <?php } ?>
-    </main>  
+
+    </main><!-- log on to codeastro.com for more projects -->

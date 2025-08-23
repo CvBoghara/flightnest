@@ -9,9 +9,11 @@ if(isset($_GET['pwd'])) {
 <link rel="stylesheet" href="../assets/css/form.css">
 <style>
   body {
-    background: #485563; 
-    background: -webkit-linear-gradient(to left, #29323c, #485563);
-    background: linear-gradient(to left, #29323c, #485563); 
+    /* padding-top: 20px; */
+    background: #485563;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   
   }    
   input {
     border :0px !important;
@@ -42,6 +44,7 @@ if(isset($_GET['pwd'])) {
     font-weight: bolder;
   }
   div.form-out {
+    /* border-radius: 40px; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
     background-color: whitesmoke !important;
     padding: 40px;
