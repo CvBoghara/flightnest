@@ -2,6 +2,27 @@
 session_start();
 if(isset($_POST['pass_but']) && isset($_SESSION['userId'])) {
     require '../helpers/init_conn_db.php';  
+    
+    // Validate that user exists in the database
+    $user_id = $_SESSION['userId'];
+    $check_user_sql = 'SELECT user_id FROM users WHERE user_id = ?';
+    $check_stmt = mysqli_stmt_init($conn);
+    
+    if(!mysqli_stmt_prepare($check_stmt, $check_user_sql)) {
+        header('Location: ../pass_form.php?error=sqlerror');
+        exit();
+    } else {
+        mysqli_stmt_bind_param($check_stmt, 'i', $user_id);
+        mysqli_stmt_execute($check_stmt);
+        $user_result = mysqli_stmt_get_result($check_stmt);
+        
+        if(!mysqli_fetch_assoc($user_result)) {
+            // User doesn't exist in database, redirect to login
+            header('Location: ../login.php?error=sessionexpired');
+            exit();
+        }
+    }
+    
     $mobile_flag = false;
     $flight_id = $_POST['flight_id'];
     $passengers = $_POST['passengers'];
@@ -26,7 +47,7 @@ if(isset($_POST['pass_but']) && isset($_SESSION['userId'])) {
         }
     }        
    $stmt = mysqli_stmt_init($conn);
-    $sql = 'SELECT passenger_id FROM Passenger_profile';
+    $sql = 'SELECT passenger_id FROM passenger_profile';
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt,$sql)) {
         header('Location: ../pass_form.php?error=sqlerror');
@@ -43,7 +64,7 @@ if(isset($_POST['pass_but']) && isset($_SESSION['userId'])) {
     $stmt = mysqli_stmt_init($conn);
     $flag = false;
     for($i=0;$i<$date_len;$i++) {
-        $sql = 'INSERT INTO Passenger_profile (user_id,mobile,dob,f_name,
+        $sql = 'INSERT INTO passenger_profile (user_id,mobile,dob,f_name,
         m_name,l_name,flight_id) VALUES (?,?,?,?,?,?,?);';            
         if(!mysqli_stmt_prepare($stmt,$sql)) {
             header('Location: ../pass_form.php?error=sqlerror');
@@ -52,7 +73,12 @@ if(isset($_POST['pass_but']) && isset($_SESSION['userId'])) {
             mysqli_stmt_bind_param($stmt,'iissssi',$_SESSION['userId'],
                 $_POST['mobile'][$i],$_POST['date'][$i],$_POST['firstname'][$i],
                 $_POST['midname'][$i],$_POST['lastname'][$i],$flight_id);                           
-            mysqli_stmt_execute($stmt);  
+            if(!mysqli_stmt_execute($stmt)) {
+                // Log the error for debugging
+                error_log("Passenger profile insertion failed: " . mysqli_stmt_error($stmt));
+                header('Location: ../pass_form.php?error=insertfailed');
+                exit();
+            }
             $flag = true;        
         }
     }   

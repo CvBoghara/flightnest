@@ -25,7 +25,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
         $stmt = mysqli_stmt_init($conn);
         $flag = false;
         for($i=$pass_id;$i<$passengers+$pass_id;$i++) {
-            $sql = 'SELECT * FROM Flight WHERE flight_id=?';
+            $sql = 'SELECT * FROM flight WHERE flight_id=?';
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt,$sql)) {
                 header('Location: ../payment.php?error=sqlerror');
@@ -78,7 +78,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                         $seats = $row['bus_seats'];                    
                         $seats = $seats - 1;
                         $stmt = mysqli_stmt_init($conn);
-                        $sql = "UPDATE Flight SET last_bus_seat=?, bus_seats=?
+                        $sql = "UPDATE flight SET last_bus_seat=?, bus_seats=?
                             WHERE flight_id=?";
                         $temp='/';
                         if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -92,7 +92,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                         $seats = $row['Seats'];
                         $seats = $seats - 1;
                         $stmt = mysqli_stmt_init($conn);
-                        $sql = 'UPDATE Flight SET last_seat=?, Seats=?
+                        $sql = 'UPDATE flight SET last_seat=?, Seats=?
                             WHERE flight_id=?';
                         if(!mysqli_stmt_prepare($stmt,$sql)) {
                             header('Location: ../payment.php?error=sqlerror');
@@ -103,7 +103,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                         }                            
                     }    
                     $stmt = mysqli_stmt_init($conn);
-                    $sql = 'INSERT INTO Ticket (passenger_id,flight_id
+                    $sql = 'INSERT INTO ticket (passenger_id,flight_id
                         ,seat_no,cost,class,user_id
                         ) VALUES (?,?,?,?,?,?)';            
                     if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -127,7 +127,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
         if($type === 'round' && $flag === true) {
             $flag = false;
             for($i=$pass_id;$i<=$passengers+$pass_id;$i++) {
-                $sql = 'SELECT * FROM Flight WHERE source=? AND Destination=? AND
+                $sql = 'SELECT * FROM flight WHERE source=? AND Destination=? AND
                     DATE(departure)=?';
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -180,7 +180,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                             $seats = $row['bus_seats'];                    
                             $seats = $seats - 1;
                             $stmt = mysqli_stmt_init($conn);
-                            $sql = "UPDATE Flight SET last_bus_seat=?, bus_seats=?
+                            $sql = "UPDATE flight SET last_bus_seat=?, bus_seats=?
                                 WHERE flight_id=?";
                             $temp='/';
                             if(!mysqli_stmt_prepare($stmt,$sql)) {
@@ -194,7 +194,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                             $seats = $row['Seats'];
                             $seats = $seats - 1;
                             $stmt = mysqli_stmt_init($conn);
-                            $sql = 'UPDATE Flight SET last_seat=?, Seats=?
+                            $sql = 'UPDATE flight SET last_seat=?, Seats=?
                                 WHERE flight_id=?';
                             if(!mysqli_stmt_prepare($stmt,$sql)) {
                                 header('Location: ../payment.php?error=sqlerror');
@@ -205,7 +205,7 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
                             }                            
                         }    
                         $stmt = mysqli_stmt_init($conn);
-                        $sql = 'INSERT INTO Ticket (passenger_id,flight_id
+                        $sql = 'INSERT INTO ticket (passenger_id,flight_id
                             ,seat_no,cost,class,user_id
                             ) VALUES (?,?,?,?,?,?)';            
                         if(!mysqli_stmt_prepare($stmt,$sql)) {

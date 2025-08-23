@@ -100,8 +100,11 @@ INSERT INTO `cities` (`city`) VALUES
 ('Singapore'),
 ('Bangkok'),
 ('Kuwait City'),
-('Abu Dhabi');
-
+('Abu Dhabi'),
+('Diu'),
+('Jaipur'),
+('Kolkata'),
+('Udaipur');
 
 -- --------------------------------------------------------
 
@@ -435,8 +438,8 @@ ALTER TABLE `payment`
 --
 ALTER TABLE `ticket`
   ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`),
-  ADD CONSTRAINT `ticket_ibfk_3` FOREIGN KEY (`passenger_id`) REFERENCES `passenger_profile` (`passenger_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`);
+-- Note: Removed passenger_id foreign key constraint to allow flexible ticket creation
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
@@ -504,40 +507,6 @@ ALTER TABLE `airline_operations`
   ADD CONSTRAINT `airline_operations_ibfk_1` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`);
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `daily_flight_schedule`
---
-
-CREATE TABLE `daily_flight_schedule` (
-  `schedule_id` int(11) NOT NULL,
-  `flight_id` int(11) NOT NULL,
-  `schedule_date` date NOT NULL,
-  `departure_time` time NOT NULL,
-  `arrival_time` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for table `daily_flight_schedule`
---
-ALTER TABLE `daily_flight_schedule`
-  ADD PRIMARY KEY (`schedule_id`),
-  ADD KEY `flight_id` (`flight_id`);
-
---
--- AUTO_INCREMENT for table `daily_flight_schedule`
---
-ALTER TABLE `daily_flight_schedule`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for table `daily_flight_schedule`
---
-ALTER TABLE `daily_flight_schedule`
-  ADD CONSTRAINT `daily_flight_schedule_ibfk_1` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`);
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `skypanel`
 --

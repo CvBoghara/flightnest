@@ -58,7 +58,7 @@ footer {
     <main>
         <?php if(isset($_POST['search_but'])) { 
             $dep_date = $_POST['dep_date'];                        
-            $ret_date = $_POST['ret_date'];  
+            $ret_date = isset($_POST['ret_date']) ? $_POST['ret_date'] : '';  
             $dep_city = $_POST['dep_city'];  
             $arr_city = $_POST['arr_city'];     
             $type = $_POST['type'];

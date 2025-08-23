@@ -34,7 +34,7 @@ require '../helpers/init_conn_db.php';?>
         ?>
         <div class="card mt-4">
             <div class="card-body">
-                <h5 class="card-title">Flight Manifest for Flight #<?php echo $flight_id; ?></h5>
+                <h5 class="card-title">Flight Manifest for Flight No <?php echo $flight_id; ?></h5>
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
