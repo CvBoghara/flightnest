@@ -144,7 +144,7 @@ input[type=number]:focus,
                 
                 <br/>
 
-                <div class='form-row'><!-- log on to codeastro.com for more projects -->
+                <div class='form-row'>  
                 <div class='col-md-12 mb-2'>
                     <button id="payment-button" type="submit"  name="pay_but"
                     class="btn btn-lg btn-primary btn-block">

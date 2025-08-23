@@ -278,6 +278,6 @@ h1 {
        ?> 
 
     </div>
-  </main><!-- log on to codeastro.com for more projects -->
+  </main>  
   <?php } ?>
   <?php subview('footer.php'); ?>
