@@ -14,6 +14,7 @@ if(isset($_POST['del_airlines']) and isset($_SESSION['adminId'])) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
+    // header('Location: list_airlines.php');
     echo("<script>location.href = 'list_airlines.php';</script>");
     exit();
   }
