@@ -128,18 +128,15 @@ if(isset($_GET['error'])) {
         </div>              
 
         <div class="d-flex justify-content-between mt-5">
-  <!-- Login Button -->
-  <button name="login_but" type="submit" class="btn btn-danger d-flex align-items-center px-4">
-    <i class="fa fa-lg fa-arrow-right me-2"></i> 
-    <span style="font-size: 1.2rem;">Login</span>
-  </button>
-
-  <!-- Register Button -->
-  <button type="button" class="btn btn-secondary d-flex align-items-center px-4" onclick="window.location.href='register.php'">
-    <i class="fa fa-lg fa-user-plus me-2"></i> 
-    <span style="font-size: 1.2rem;">Register</span>
-  </button>
-</div>
+          <button name="login_but" type="submit" class="btn btn-danger d-flex align-items-center px-4">
+            <i class="fa fa-lg fa-arrow-right me-2"></i> 
+            <span style="font-size: 1.2rem;">Login</span>
+          </button>
+          <button type="button" class="btn btn-secondary d-flex align-items-center px-4" onclick="window.location.href='register.php'">
+            <i class="fa fa-lg fa-user-plus me-2"></i> 
+            <span style="font-size: 1.2rem;">Register</span>
+          </button>
+        </div>
 
         <div class="mt-3">
         
