@@ -35,7 +35,7 @@ button.btn-outline-light:hover {
     <body>
 
         <nav class="navbar navbar-custom navbar-expand-lg navbar-dark">
-          <a class="navbar-brand text-light" href="index.php"><h4>ADMIN PANEL</h4></a>
+          <a class="navbar-brand text-light" href="index.php"><h4>ADMINISTRATOR PANEL</h4></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">

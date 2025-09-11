@@ -1,8 +1,16 @@
 <?php include_once 'header.php'; ?>
 <?php
-if(isset($_GET['pwd'])) {
-    if($_GET['pwd']=='updated') {
-        echo "<script>alert('Your password has been reset!!');</script>";
+if(isset($_GET['error'])) {
+    if($_GET['error'] === 'invalidemail') {
+        echo '<script>alert("Invalid Email")</script>';
+    } else if($_GET['error'] === 'pwdnotmatch') {
+        echo '<script>alert("Passwords do not match")</script>';
+    } else if($_GET['error'] === 'usernameexists') {
+        echo '<script>alert("Username already exists")</script>';
+    } else if($_GET['error'] === 'emailexists') {
+        echo '<script>alert("Email already exists")</script>';
+    } else if($_GET['error'] === 'sqlerror') {
+        echo "<script>alert('Database error')</script>";
     }
 }
 ?>
@@ -11,9 +19,9 @@ if(isset($_GET['pwd'])) {
   body {
     /* padding-top: 20px; */
     background: #485563;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-   
+    background: -webkit-linear-gradient(to left, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
   }    
   input {
     border :0px !important;
@@ -54,7 +62,7 @@ background: linear-gradient(to left, #29323c, #485563); /* W3C, IE 10+/ Edge, Fi
   position: relative;
   display: inline-block;
   width: 100%;
-}
+  }
   select {
     float: right;
     font-weight: bold !important;
@@ -73,34 +81,14 @@ background: linear-gradient(to left, #29323c, #485563); /* W3C, IE 10+/ Edge, Fi
 }  
 </style>
 <main>
-<?php
-if(isset($_GET['error'])) {
-    if($_GET['error'] === 'invalidcred') {
-        echo '<script>alert("Invalid Credentials")</script>';
-    } else if($_GET['error'] === 'wrongpwd') {
-        echo '<script>alert("Wrong Password")</script>';
-    } else if($_GET['error'] === 'sqlerror') {
-        echo"<script>alert('Database error')</script>";
-    }
-}
-?>
 <div class="container mt-0">
   <div class="row">
-    <?php
-    if(isset($_GET['error'])) {
-        if($_GET['error'] === 'destless') {
-            echo "<script>alert('Dest. date/time is less than src.');</script>";
-        } else if($_GET['error'] === 'sqlerr') {
-          echo "<script>alert('Database error');</script>";
-        }
-    }
-    ?>
     <div class="col-md-3"></div>
       <div class="bg-light form-out col-md-6">
-      <h1 class="text-secondary text-center">ADMIN LOGIN</h1>
+      <h1 class="text-secondary text-center">ADMINISTRATOR REGISTRATION</h1>
       
       <form method="POST" class=" text-center" 
-        action="../includes/admin/login.inc.php">
+        action="../includes/admin/register.inc.php">
 
         <div class="form-row">  
             <div class="col-1 p-0 mr-1">
@@ -109,41 +97,57 @@ if(isset($_GET['error'])) {
             </div> 
           <div class="col-10 mb-2">              
             <div class="input-group">
-                <label for="user_id">Username/ Email</label>
-                <input type="text" name="user_id" id="user_id" required
-                   >
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required>
               </div>              
           </div>       
+          <div class="col-1 p-0 mr-1">
+                <i class="fa fa-envelope text-secondary" 
+                    style="float: right;margin-top:35px;"></i>
+          </div>                
+          <div class="col-10 mb-2">
+            <div class="input-group">
+                <label for="email_id">Email</label>
+                <input type="email" name="email_id" id="email_id" required>
+              </div>            
+          </div>
+          <div class="col-1 p-0 mr-1">
+                <i class="fa fa-lock text-secondary" 
+                    style="float: right;margin-top:35px;"></i>
+          </div>                
+          <div class="col-10 mb-2">
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+              </div>            
+          </div>
           <div class="col-1 p-0 mr-1">
                 <i class="fa fa-lock text-secondary" 
                     style="float: right;margin-top:35px;"></i>
           </div>                
           <div class="col-10">
             <div class="input-group">
-                <label for="user_pass">Password</label>
-                <input type="password" name="user_pass" id="user_pass"
-                      required>
+                <label for="password_repeat">Confirm Password</label>
+                <input type="password" name="password_repeat" id="password_repeat" required>
               </div>            
           </div>          
         </div>              
 
         <div class="d-flex justify-content-between mt-5">
-  <!-- Login Button -->
-  <button name="login_but" type="submit" class="btn btn-danger d-flex align-items-center px-4">
-    <i class="fa fa-lg fa-arrow-right me-2"></i> 
-    <span style="font-size: 1.2rem;">Login</span>
-  </button>
+        <button name="signup_submit" type="submit" class="btn btn-danger d-flex align-items-center px-4">
+            <i class="fa fa-lg fa-user-plus me-2"></i>
+            <span style="font-size: 1.2rem;">Register</span>
+        </button>
+        <button type="button" class="btn btn-secondary d-flex align-items-center px-4" onclick="window.location.href='login.php'">
+            <i class="fa fa-lg fa-arrow-right me-2"></i>
+            <span style="font-size: 1.2rem;">Login</span>
+        </button>
+        </div>
 
-  <!-- Register Button -->
-  <button type="button" class="btn btn-secondary d-flex align-items-center px-4" onclick="window.location.href='register.php'">
-    <i class="fa fa-lg fa-user-plus me-2"></i> 
-    <span style="font-size: 1.2rem;">Register</span>
-  </button>
-</div>
-
-        <div class="mt-3">
+       <div class="mt-3">
         
-      </div>
+        </div>
+
       </form>
     </div>
     <div class="col-md-3"></div>
@@ -165,9 +169,5 @@ $(document).ready(function(){
       $("label[for='"+me.attr('id')+"']").removeClass("animate-label");
     }
   }) ;
-  // $('#test-form').submit(function(e){
-  //   e.preventDefault() ;
-  //   alert("Thank you") ;
-  // })
 });
 </script>

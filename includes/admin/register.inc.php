@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['adminId']) && isset($_POST['signup_submit'])) {    
+if(isset($_POST['signup_submit'])) {
     require '../../helpers/init_conn_db.php';
     $username = $_POST['username'];
     $email_id = $_POST['email_id'];
@@ -52,9 +52,9 @@ if(isset($_SESSION['adminId']) && isset($_POST['signup_submit'])) {
                 $sql = 'SELECT * FROM Admin WHERE admin_uname=? OR admin_email=?';
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt,$sql);
-                mysqli_stmt_bind_param($stmt,'ss',$email_id,$email_id);            
+                mysqli_stmt_bind_param($stmt,'ss',$username,$email_id);
                 mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($result);    
+                $result = mysqli_stmt_get_result($stmt);
                 if($row = mysqli_fetch_assoc($result)) {
                     // $pwd_check = password_verify($password,"$2y$10$5Cu/kAh5asdSvpXlpGOOY.MBjp5qELS/W49BGFU0.s6JLLJue4tOi");
                     $pwd_check = password_verify($password,$row['admin_pwd']);
