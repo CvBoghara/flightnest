@@ -52,36 +52,10 @@ CREATE TABLE `airline` (
 --
 
 CREATE TABLE `cities` (
-  `city` varchar(20) NOT NULL
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `city` VARCHAR(20) NOT NULL UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-INSERT INTO `cities` (`city`) VALUES
-('Mumbai'),
-('Delhi'),
-('Bengaluru'),
-('Ahmedabad'),
-('Surat'),
-('Rajkot'),
-('Hyderabad'),
-('Pune'),
-('Kolkata'),
-('Chennai'),
-('Goa'),
-('Dubai'),
-('Sharjah'),
-('Doha'),
-('Muscat'),
-('Jeddah'),
-('London'),
-('Singapore'),
-('Bangkok'),
-('Kuwait City'),
-('Abu Dhabi'),
-('Diu'),
-('Jaipur'),
-('Kolkata'),
-('Udaipur');
 -- --------------------------------------------------------
 
 --
