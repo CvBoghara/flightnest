@@ -59,7 +59,7 @@ if(isset($_POST['signup_submit'])) {
                                 header('Location: ../index.php?error=sqlerror');
                                 exit();            
                             } else {
-                                mysqli_stmt_bind_param($stmt,'ss',$username,$username);            
+                                mysqli_stmt_bind_param($stmt,'ss',$username,$email_id);            
                                 mysqli_stmt_execute($stmt);
                                 $result = mysqli_stmt_get_result($stmt);
                                 if($row = mysqli_fetch_assoc($result)) {
