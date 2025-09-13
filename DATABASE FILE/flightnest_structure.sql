@@ -129,19 +129,6 @@ CREATE TABLE `payment` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `pwdreset`
---
-
-CREATE TABLE `pwdreset` (
-  `pwd_reset_id` int(11) NOT NULL,
-  `pwd_reset_email` varchar(50) NOT NULL,
-  `pwd_reset_selector` varchar(80) NOT NULL,
-  `pwd_reset_token` varchar(120) NOT NULL,
-  `pwd_reset_expires` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `ticket`
@@ -217,10 +204,6 @@ ALTER TABLE `payment`
   ADD KEY `flight_id` (`flight_id`);
 
 --
--- Indexes for table `pwdreset`
---
-ALTER TABLE `pwdreset`
-  ADD PRIMARY KEY (`pwd_reset_id`);
 
 --
 -- Indexes for table `ticket`
@@ -267,11 +250,7 @@ ALTER TABLE `flight`
 ALTER TABLE `passenger_profile`
   MODIFY `passenger_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `pwdreset`
---
-ALTER TABLE `pwdreset`
-  MODIFY `pwd_reset_id` int(11) NOT NULL AUTO_INCREMENT;
---
+
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
@@ -379,66 +358,3 @@ ALTER TABLE `airline_operations`
   ADD CONSTRAINT `airline_operations_ibfk_1` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`);
 
 -- --------------------------------------------------------
---
--- Table structure for table `skypanel`
---
-
-CREATE TABLE `skypanel` (
-  `panel_id` int(11) NOT NULL,
-  `flight_id` int(11) NOT NULL,
-  `panel_name` varchar(50) NOT NULL,
-  `panel_type` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for table `skypanel`
---
-ALTER TABLE `skypanel`
-  ADD PRIMARY KEY (`panel_id`),
-  ADD KEY `flight_id` (`flight_id`);
-
---
--- AUTO_INCREMENT for table `skypanel`
---
-ALTER TABLE `skypanel`
-  MODIFY `panel_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for table `skypanel`
---
-ALTER TABLE `skypanel`
-  ADD CONSTRAINT `skypanel_ibfk_1` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `manifest`
---
-
-CREATE TABLE `manifest` (
-  `manifest_id` int(11) NOT NULL,
-  `flight_id` int(11) NOT NULL,
-  `passenger_id` int(11) NOT NULL,
-  `seat_no` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for table `manifest`
---
-ALTER TABLE `manifest`
-  ADD PRIMARY KEY (`manifest_id`),
-  ADD KEY `flight_id` (`flight_id`),
-  ADD KEY `passenger_id` (`passenger_id`);
-
---
--- AUTO_INCREMENT for table `manifest`
---
-ALTER TABLE `manifest`
-  MODIFY `manifest_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for table `manifest`
---
-ALTER TABLE `manifest`
-  ADD CONSTRAINT `manifest_ibfk_1` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`),
-  ADD CONSTRAINT `manifest_ibfk_2` FOREIGN KEY (`passenger_id`) REFERENCES `passenger_profile` (`passenger_id`);
