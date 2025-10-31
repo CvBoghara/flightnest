@@ -223,7 +223,7 @@ input[type="checkbox"]{
 .value {
     cursor: default;
     width: 40px;
-    height:33px;
+    height:40px;
     color: #000;
     line-height: 24px;
     border: 1px solid #E5E5E5;
