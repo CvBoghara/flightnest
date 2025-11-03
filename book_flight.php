@@ -58,7 +58,15 @@ footer {
     <main>
         <?php if(isset($_POST['search_but'])) { 
             $dep_date = $_POST['dep_date'];                        
-            $ret_date = isset($_POST['ret_date']) ? $_POST['ret_date'] : '';  
+            $ret_date = isset($_POST['ret_date']) ? $_POST['ret_date'] : '';
+            if(!isset($_POST['dep_city'])) {
+              header('Location: index.php?error=seldep');
+              exit(); 
+            }
+            if(!isset($_POST['arr_city'])) {
+              header('Location: index.php?error=selarr');
+              exit();              
+            }            
             $dep_city = $_POST['dep_city'];  
             $arr_city = $_POST['arr_city'];     
             $type = $_POST['type'];
@@ -67,14 +75,6 @@ footer {
             if($dep_city === $arr_city){
               header('Location: index.php?error=sameval');
               exit();    
-            }
-            if($dep_city === '0') {
-              header('Location: index.php?error=seldep');
-              exit(); 
-            }
-            if($arr_city === '0') {
-              header('Location: index.php?error=selarr');
-              exit();              
             }
             ?>
           <div class="container-md mt-2">

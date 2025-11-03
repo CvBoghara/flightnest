@@ -638,8 +638,8 @@ h1 {
 								mysqli_stmt_prepare($stmt,$sql);         
 								mysqli_stmt_execute($stmt);          
 								$result = mysqli_stmt_get_result($stmt);    
-								echo '<select class="" name="dep_city" id="w3_country1">
-								<option value="0" selected disabled >Departure</option>';
+								echo '<select name="dep_city" id="w3_country1" required>
+								<option value="" selected disabled >Departure</option>';
 								while ($row = mysqli_fetch_assoc($result)) {
 								echo '<option value='. $row['city']  .'>'. 
 									$row['city'] .'</option>';
@@ -655,8 +655,8 @@ h1 {
 								mysqli_stmt_prepare($stmt,$sql);         
 								mysqli_stmt_execute($stmt);          
 								$result = mysqli_stmt_get_result($stmt);    
-								echo '<select value="0" name="arr_city" id="w3_country1">
-								<option selected disabled>Arrival</option>';
+								echo '<select name="arr_city" id="w3_country1" required>
+								<option value="" selected disabled>Arrival</option>';
 								while ($row = mysqli_fetch_assoc($result)) {
 								echo '<option value='. $row['city']  .'>'. 
 									$row['city'] .'</option>';
@@ -716,8 +716,8 @@ h1 {
 								mysqli_stmt_prepare($stmt,$sql);         
 								mysqli_stmt_execute($stmt);          
 								$result = mysqli_stmt_get_result($stmt);    
-								echo '<select value="0" name="dep_city" id="w3_country1">
-								<option selected disabled>Departure</option>';
+								echo '<select name="dep_city" id="w3_country1" required>
+								<option value="" selected disabled>Departure</option>';
 								while ($row = mysqli_fetch_assoc($result)) {
 								echo '<option value='. $row['city']  .'>'. 
 									$row['city'] .'</option>';
@@ -733,8 +733,8 @@ h1 {
 								mysqli_stmt_prepare($stmt,$sql);         
 								mysqli_stmt_execute($stmt);          
 								$result = mysqli_stmt_get_result($stmt);    
-								echo '<select value="0" name="arr_city" id="w3_country1">
-								<option selected disabled>Arrival</option>';
+								echo '<select name="arr_city" id="w3_country1" required>
+								<option value="" selected disabled>Arrival</option>';
 								while ($row = mysqli_fetch_assoc($result)) {
 								echo '<option value='. $row['city']  .'>'. 
 									$row['city'] .'</option>';
@@ -926,4 +926,5 @@ div.card {
 			$('#myList li').not(':lt('+x+')').hide();
 		});
 	});
+</script>
 </script>
