@@ -49,38 +49,53 @@ if(isset($_POST['signup_submit'])) {
                             exit();            
                         } else {
                             $pwd_hash = password_hash($password, PASSWORD_DEFAULT);
-                            mysqli_stmt_bind_param($stmt,'sss',$username,$email_id,$pwd_hash);            
-                            mysqli_stmt_execute($stmt);  
-                            
-                            // LOGIN USer                            
+                            mysqli_stmt_bind_param($stmt,'sss',$username,$email_id,$pwd_hash);
+                            mysqli_stmt_execute($stmt);
+
+                            // Send registration success email
+                            require '../helpers/email_helper.php';
+                            $subject = 'Welcome to FlightNest - Registration Successful';
+                            $body = "
+                                <h2>Welcome to FlightNest!</h2>
+                                <p>Dear $username,</p>
+                                <p>Your account has been successfully created.</p>
+                                <p>You can now log in and book your flights.</p>
+                                <p>Best regards,<br>FlightNest Team</p>
+                            ";
+                            $email_result = sendEmail($email_id, $subject, $body, $email_id);
+                            if ($email_result !== true) {
+                                error_log("Registration email failed for $email_id: $email_result");
+                            }
+
+                            // LOGIN User
                             $sql = 'SELECT * FROM Users WHERE username=? OR email=?;';
                             $stmt = mysqli_stmt_init($conn);
                             if(!mysqli_stmt_prepare($stmt,$sql)) {
                                 header('Location: ../index.php?error=sqlerror');
-                                exit();            
+                                exit();
                             } else {
-                                mysqli_stmt_bind_param($stmt,'ss',$username,$email_id);            
+                                mysqli_stmt_bind_param($stmt,'ss',$username,$email_id);
                                 mysqli_stmt_execute($stmt);
                                 $result = mysqli_stmt_get_result($stmt);
                                 if($row = mysqli_fetch_assoc($result)) {
                                     $pwd_check = password_verify($password,$row['password']);
                                     if($pwd_check == false) {
                                         header('Location: ../index.php?error=wrongpwd');
-                                        exit();    
+                                        exit();
                                     }
                                     else if($pwd_check == true) {
                                         session_start();
                                         $_SESSION['userId'] = $row['user_id'];
                                         $_SESSION['userUid'] = $row['username'];
-                                        $_SESSION['userMail'] = $row['email'];                                        
+                                        $_SESSION['userMail'] = $row['email'];
                                         header('Location: ../index.php?login=success');
-                                        exit();                  
+                                        exit();
                                     } else {
                                         header('Location: ../index.php?error=invalidcred');
-                                        exit();                    
+                                        exit();
                                     }
                                 }
-                            }                                                    
+                            }
                         }
                     }
                 }               

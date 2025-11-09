@@ -102,7 +102,7 @@ input {
 .register-heading{
     text-align: center;
     margin-top: 8%;
-    margin-bottom: -15%;
+    margin-bottom: -10%;
     color: #495057;
 }
 </style>

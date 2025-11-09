@@ -234,10 +234,29 @@ if(isset($_POST['pay_but']) && isset($_SESSION['userId'])) {
             unset($_SESSION['price']);
             unset($_SESSION['class']);    
             unset($_SESSION['type']);     
-            unset($_SESSION['ret_date']);               
+            unset($_SESSION['ret_date']);
+
+            // Send ticket booking success email
+            require '../helpers/email_helper.php';
+            $user_email = $_SESSION['userMail'] ?? ''; // Assuming user email is stored in session
+            if($user_email) {
+                $subject = 'FlightNest - Ticket Booking Successful';
+                $body = "
+                    <h2>Ticket Booking Successful</h2>
+                    <p>Dear User,</p>
+                    <p>Your ticket has been successfully booked and payment has been processed.</p>
+                    <p>You can view your ticket details in your account.</p>
+                    <p>Best regards,<br>FlightNest Team</p>
+                ";
+                $email_result = sendEmail($user_email, $subject, $body, $user_email);
+                if ($email_result !== true) {
+                    error_log("Payment email failed for $user_email: $email_result");
+                }
+            }
+
             header('Location: ../pay_success.php');
-            exit();    
- 
+            exit();
+
         } else {
             header('Location: ../payment.php?error=sqlerror');
             exit();               

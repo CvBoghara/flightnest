@@ -40,20 +40,69 @@ if(isset($_SESSION['adminId'])) {
                 WHERE flight_id=?";
             $stmt = mysqli_stmt_init($conn);
             mysqli_stmt_prepare($stmt,$sql);
-            mysqli_stmt_bind_param($stmt,'sssi',$issue,$stamp_dep,$stamp_arr,$flight_id);         
+            mysqli_stmt_bind_param($stmt,'sssi',$issue,$stamp_dep,$stamp_arr,$flight_id);
             mysqli_stmt_execute($stmt);
+
+            // Send delay/technical issue notification to affected users
+            require '../../helpers/email_helper.php';
+            $sql_users = "SELECT DISTINCT u.email FROM Users u
+                          INNER JOIN ticket t ON u.user_id = t.user_id
+                          WHERE t.flight_id = ?";
+            $stmt_users = mysqli_stmt_init($conn);
+            mysqli_stmt_prepare($stmt_users, $sql_users);
+            mysqli_stmt_bind_param($stmt_users, 'i', $flight_id);
+            mysqli_stmt_execute($stmt_users);
+            $result_users = mysqli_stmt_get_result($stmt_users);
+            while ($user = mysqli_fetch_assoc($result_users)) {
+                $subject = 'FlightNest - Flight Delay/Technical Issue';
+                $body = "
+                    <h2>Flight Delay/Technical Issue</h2>
+                    <p>Dear Passenger,</p>
+                    <p>We regret to inform you that your flight has been delayed due to technical issues.</p>
+                    <p>New Departure: $stamp_dep<br>New Arrival: $stamp_arr</p>
+                    <p>We apologize for the inconvenience.</p>
+                    <p>Best regards,<br>FlightNest Team</p>
+                ";
+                sendEmail($user['email'], $subject, $body);
+            }
+            mysqli_stmt_close($stmt_users);
+
             mysqli_stmt_close($stmt);
-            mysqli_close($conn);;
+            mysqli_close($conn);
             header('Location: ../../admin/index.php');
-            exit();            
+            exit();
         }        
     } else if(isset($_POST['issue_soved_but'])) {
       $flight_id = $_POST['flight_id'];
       $sql = "UPDATE Flight SET status='',issue='solved' WHERE flight_id=?";
       $stmt = mysqli_stmt_init($conn);
       mysqli_stmt_prepare($stmt,$sql);
-      mysqli_stmt_bind_param($stmt,'i',$flight_id);         
+      mysqli_stmt_bind_param($stmt,'i',$flight_id);
       mysqli_stmt_execute($stmt);
+
+      // Send technical issue resolved notification to affected users
+      require '../../helpers/email_helper.php';
+      $sql_users = "SELECT DISTINCT u.email FROM Users u
+                    INNER JOIN ticket t ON u.user_id = t.user_id
+                    WHERE t.flight_id = ?";
+      $stmt_users = mysqli_stmt_init($conn);
+      mysqli_stmt_prepare($stmt_users, $sql_users);
+      mysqli_stmt_bind_param($stmt_users, 'i', $flight_id);
+      mysqli_stmt_execute($stmt_users);
+      $result_users = mysqli_stmt_get_result($stmt_users);
+      while ($user = mysqli_fetch_assoc($result_users)) {
+          $subject = 'FlightNest - Technical Issue Resolved';
+          $body = "
+              <h2>Technical Issue Resolved</h2>
+              <p>Dear Passenger,</p>
+              <p>The technical issue with your flight has been resolved. Your flight will proceed as scheduled.</p>
+              <p>Thank you for your patience.</p>
+              <p>Best regards,<br>FlightNest Team</p>
+          ";
+          sendEmail($user['email'], $subject, $body);
+      }
+      mysqli_stmt_close($stmt_users);
+
       mysqli_stmt_close($stmt);
       mysqli_close($conn);
       header('Location: ../../admin/index.php');
@@ -64,8 +113,32 @@ if(isset($_SESSION['adminId'])) {
       $sql = "UPDATE Flight SET status='arr'WHERE flight_id=?";
       $stmt = mysqli_stmt_init($conn);
       mysqli_stmt_prepare($stmt,$sql);
-      mysqli_stmt_bind_param($stmt,'i',$flight_id);         
+      mysqli_stmt_bind_param($stmt,'i',$flight_id);
       mysqli_stmt_execute($stmt);
+
+      // Send flight arrival notification to affected users
+      require '../../helpers/email_helper.php';
+      $sql_users = "SELECT DISTINCT u.email FROM Users u
+                    INNER JOIN ticket t ON u.user_id = t.user_id
+                    WHERE t.flight_id = ?";
+      $stmt_users = mysqli_stmt_init($conn);
+      mysqli_stmt_prepare($stmt_users, $sql_users);
+      mysqli_stmt_bind_param($stmt_users, 'i', $flight_id);
+      mysqli_stmt_execute($stmt_users);
+      $result_users = mysqli_stmt_get_result($stmt_users);
+      while ($user = mysqli_fetch_assoc($result_users)) {
+          $subject = 'FlightNest - Your Flight is Arriving Soon';
+          $body = "
+              <h2>Flight Arrival Notification</h2>
+              <p>Dear Passenger,</p>
+              <p>Your flight is arriving soon. Please proceed to the arrival area.</p>
+              <p>Safe travels!</p>
+              <p>Best regards,<br>FlightNest Team</p>
+          ";
+          sendEmail($user['email'], $subject, $body);
+      }
+      mysqli_stmt_close($stmt_users);
+
       mysqli_stmt_close($stmt);
       mysqli_close($conn);
       header('Location: ../../admin/index.php');

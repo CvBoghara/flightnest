@@ -24,9 +24,25 @@ if(isset($_POST['login_but'])) {
                 $_SESSION['userUid'] = $row['username'];
                 $_SESSION['userMail'] = $row['email'];
                 setcookie('Uname', $email_id, time() + (86400 * 30), "/");
-                setcookie('Upwd', $password, time() + (86400 * 30), "/");                                
+                setcookie('Upwd', $password, time() + (86400 * 30), "/");
+
+                // Send login success email
+                require '../helpers/email_helper.php';
+                $subject = 'FlightNest - Login Successful';
+                $body = "
+                    <h2>Login Successful</h2>
+                    <p>Dear {$row['username']},</p>
+                    <p>You have successfully logged in to your FlightNest account.</p>
+                    <p>If this was not you, please contact support immediately.</p>
+                    <p>Best regards,<br>FlightNest Team</p>
+                ";
+                $email_result = sendEmail($row['email'], $subject, $body, $row['email']);
+                if ($email_result !== true) {
+                    error_log("Login email failed for {$row['email']}: $email_result");
+                }
+
                 header('Location: ../index.php?login=success');
-                exit();                  
+                exit();
             } else {
                 header('Location: ../login.php?error=invalidcred');
                 exit();                    
